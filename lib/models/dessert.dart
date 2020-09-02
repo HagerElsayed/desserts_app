@@ -21,7 +21,7 @@ class Dessert {
       this.description});
 }
 
-class AppBrian {
+class AppRepo {
   static List<Dessert> desserts = [
     Dessert(
         id: 1,

@@ -18,135 +18,128 @@ class DessertDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        color: Colors.white,
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Stack(
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Stack(
+              children: [
+                FadeAnimation(
+                  0.2,
+                  ImageContainer(image: dessertObject.image),
+                ),
+                Positioned(
+                  top: 60,
+                  left: 20,
+                  child: InkWell(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: SvgPicture.asset('icons/back.svg')),
+                ),
+                Positioned(
+                  top: 60,
+                  right: 20,
+                  child: InkWell(
+                      onTap: () {}, child: SvgPicture.asset('icons/heart.svg')),
+                ),
+              ],
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(
+                  horizontal: getMediaQuerySize(context).width * kPadding60),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  FadeAnimation(
-                    0.2,
-                    ImageContainer(image: dessertObject.image),
+                  AppText(
+                    text: dessertObject.name,
+                    textColor: kdefaultAppColor,
+                    fontWeight: FontWeight.w600,
+                    padding: kPadding30,
                   ),
-                  Positioned(
-                    top: 60,
-                    left: 20,
-                    child: InkWell(
-                        onTap: () {
-                          Navigator.pop(context);
-                        },
-                        child: SvgPicture.asset('icons/back.svg')),
+                  SizedBox(
+                    height: getMediaQuerySize(context).height * kPadding20,
                   ),
-                  Positioned(
-                    top: 60,
-                    right: 20,
-                    child: InkWell(
-                        onTap: () {},
-                        child: SvgPicture.asset('icons/heart.svg')),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      AppText(
+                        text: dessertObject.price,
+                        fontSize: kFont14,
+                        textColor: kTextColor,
+                        fontWeight: FontWeight.w700,
+                      ),
+                      Row(
+                        children: [
+                          CircularButton("-"),
+                          AppText(
+                            text: "1",
+                            textColor: kTextColor,
+                            fontSize: kFont14,
+                            padding: 0.0,
+                            fontWeight: FontWeight.w700,
+                          ),
+                          SizedBox(
+                            width:
+                                getMediaQuerySize(context).width * kPadding30,
+                          ),
+                          CircularButton(
+                            "+",
+                            rightPadding: 0.0,
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                        vertical:
+                            getMediaQuerySize(context).height * kPadding30),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        InfoContainer(
+                          infoText: dessertObject.calories.toString(),
+                          icon: 'icons/kcals.svg',
+                        ),
+                        InfoContainer(
+                          infoText: dessertObject.delivery,
+                          icon: 'icons/delivery.svg',
+                        ),
+                        InfoContainer(
+                          infoText: dessertObject.time,
+                          icon: 'icons/time.svg',
+                        )
+                      ],
+                    ),
+                  ),
+                  AppText(
+                    text: "Description:",
+                    fontSize: kFont16,
+                    textColor: kDarkColor,
+                    padding: 0.0,
+                  ),
+                  AppText(
+                    text: dessertObject.description,
+                    fontSize: kFont14,
+                    textColor: kDescriptionColor,
+                  ),
+                  SizedBox(
+                    height: getMediaQuerySize(context).height * 0.09,
+                  ),
+                  RoundButton(
+                    buttonTitle: "Add to cart",
+                    onPressed: () {},
+                  ),
+                  SizedBox(
+                    height: getMediaQuerySize(context).height * 0.09,
                   ),
                 ],
               ),
-              Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: getMediaQuerySize(context).width * kPadding60),
-                child: Container(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      AppText(
-                        text: dessertObject.name,
-                        textColor: kdefaultAppColor,
-                        fontWeight: FontWeight.w600,
-                        padding: kPadding30,
-                      ),
-                      SizedBox(
-                        height: getMediaQuerySize(context).height * kPadding20,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          AppText(
-                            text: dessertObject.price,
-                            fontSize: kFont14,
-                            textColor: kTextColor,
-                            fontWeight: FontWeight.w700,
-                          ),
-                          Row(
-                            children: [
-                              CircularButton("-"),
-                              AppText(
-                                text: "1",
-                                textColor: kTextColor,
-                                fontSize: kFont14,
-                                padding: 0.0,
-                                fontWeight: FontWeight.w700,
-                              ),
-                              SizedBox(
-                                width: getMediaQuerySize(context).width *
-                                    kPadding30,
-                              ),
-                              CircularButton(
-                                "+",
-                                rightPadding: 0.0,
-                              )
-                            ],
-                          )
-                        ],
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                            vertical:
-                                getMediaQuerySize(context).height * kPadding30),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            InfoContainer(
-                              infoText: dessertObject.calories.toString(),
-                              icon: 'icons/kcals.svg',
-                            ),
-                            InfoContainer(
-                              infoText: dessertObject.delivery,
-                              icon: 'icons/delivery.svg',
-                            ),
-                            InfoContainer(
-                              infoText: dessertObject.time,
-                              icon: 'icons/time.svg',
-                            )
-                          ],
-                        ),
-                      ),
-                      AppText(
-                        text: "Description:",
-                        fontSize: kFont16,
-                        textColor: kDarkColor,
-                        padding: 0.0,
-                      ),
-                      AppText(
-                        text: dessertObject.description,
-                        fontSize: kFont14,
-                        textColor: kDescriptionColor,
-                      ),
-                      SizedBox(
-                        height: getMediaQuerySize(context).height * 0.09,
-                      ),
-                      RoundButton(
-                        buttonTitle: "Add to cart",
-                        onPressed: () {},
-                      ),
-                      SizedBox(
-                        height: getMediaQuerySize(context).height * 0.09,
-                      ),
-                    ],
-                  ),
-                ),
-              )
-            ],
-          ),
+            )
+          ],
         ),
       ),
     );
   }
 }
-
